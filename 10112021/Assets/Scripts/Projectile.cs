@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    Rigidbody2D rigidbody2D;
-
+    Rigidbody2D rigidbody2d;
+    
     void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
-
+    
     public void Launch(Vector2 direction, float force)
     {
-        rigidbody2D.AddForce(direction * force);
+        rigidbody2d.AddForce(direction * force);
     }
-
+    
     void Update()
     {
         if(transform.position.magnitude > 1000.0f)
@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
     void OnCollisionEnter2D(Collision2D other)
     {
         EnemyController e = other.collider.GetComponent<EnemyController>();
@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
         {
             e.Fix();
         }
-
+    
         Destroy(gameObject);
     }
 }

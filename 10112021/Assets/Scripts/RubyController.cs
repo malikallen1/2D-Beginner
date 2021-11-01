@@ -9,12 +9,11 @@ public class RubyController : MonoBehaviour
     public int maxHealth = 5;
 
     public GameObject projectilePrefab;
+    
+    public int health { get { return currentHealth; }}
+    int currentHealth;
 
     public float timeInvincible = 2.0f;
-    
-    int currentHealth;
-    public int health { get { return currentHealth; }}
-
     bool isInvincible;
     float invincibleTimer;
     
@@ -82,7 +81,7 @@ public class RubyController : MonoBehaviour
             invincibleTimer = timeInvincible;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth + "/" + maxHealth);
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 
     void Launch()
